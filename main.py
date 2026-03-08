@@ -4,19 +4,27 @@ from aiogram import Bot, Dispatcher
 
 from handlers import router
 from config import BOT_TOKEN
-
+from api.weather import client
 
 dp = Dispatcher()
-logger = logging.getLogger(__name__)
 
 
-dp.include_routers(router)
+@dp.shutdown()
+async def on_shutdown():
+    await client.aclose()
 
 
 async def main():
+
+
+    dp.include_routers(router)
     bot = Bot(token=BOT_TOKEN)
+    logging.basicConfig(level=logging.INFO,
+                        format="%(asctime)s | %(levelname)s | %(name)s | %(funcName)s | %(message)s")
+    logger = logging.getLogger(__name__)
     await dp.start_polling(bot)
 
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(name)s | %(funcName)s | %(message)s")
-asyncio.run(main())
+if __name__ == '__main__':
+    asyncio.run(main())
+

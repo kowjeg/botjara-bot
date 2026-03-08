@@ -14,5 +14,5 @@ async def hello_text(message: Message):
 
 @router.message(F.text.startswith('хочу'))
 async def wanna_text(message: Message):
-    await message.answer(f'хоти {message.text.removeprefix('хочу ')}' )
+    await message.answer(f'хоти {message.text.removeprefix("хочу ")}' )
 
