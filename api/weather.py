@@ -4,9 +4,9 @@ import httpx
 client = httpx.AsyncClient()
 
 
-async def get_temperature():
+async def get_temperature(lat: float, lon: float) -> float | None:
     try:
-        response = await client.get('https://api.open-meteo.com/v1/forecast?latitude=55.75&longitude=37.62&current_weather=true')
+        response = await client.get(f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true')
 
         data = response.json()
         return data['current_weather']['temperature']
