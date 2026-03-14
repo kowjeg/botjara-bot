@@ -24,7 +24,7 @@ def menu_keyboard():
 def weather_get_location():
     return ReplyKeyboardMarkup(
         keyboard=[[
-            KeyboardButton(text='Отправить геологацию', request_location=True)
+            KeyboardButton(text='Отправить геолокацию', request_location=True)
         ]],
         resize_keyboard=True,
         one_time_keyboard=True

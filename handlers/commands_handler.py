@@ -13,7 +13,7 @@ router = Router()
 async def start_handler(message: Message) -> None:
     logger.info('пришло сообщение от %s %s с текстом %s', message.from_user.id, message.from_user.full_name,
                 message.text)
-    await message.answer(f'Hello, {html.bold(message.from_user.full_name)}!', parse_mode="HTML")
+    await message.answer(f'Hello, {html.bold(message.from_user.full_name)}!')
 
 
 @router.message(Command('help'))
