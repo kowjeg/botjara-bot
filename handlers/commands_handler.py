@@ -2,7 +2,7 @@ import logging
 
 from aiogram import Router, html
 from aiogram.filters import Command
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 
 
 
@@ -39,3 +39,4 @@ async def whoami_handler(message: Message) -> None:
         f'Имя: {user.first_name}\n'
         f'Фамилия: {last_name}'
     )
+

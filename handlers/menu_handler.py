@@ -2,8 +2,9 @@ import logging
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message, ReplyKeyboardRemove
+from aiogram.types import Message, ReplyKeyboardRemove, CallbackQuery
 from keyboards.menu_keyboards import menu_keyboard, weather_get_location
+from keyboards.inline_keyboards import demo_inline
 from api.weather import get_temperature
 from states.states import WeatherState
 
@@ -50,3 +51,13 @@ async def settings_handler(message: Message):
 async def close_menu_handler(message: Message):
     logger.info('закрываем меню в чате у пользователя %s', message.from_user.id)
     await message.answer('Меню закрыто', reply_markup=ReplyKeyboardRemove())
+
+
+@router.message(Command('inline_menu'))
+async def inline_menu_handler(message: Message) -> None:
+    logger.info('Пользователь %s вызвал inline меню %s', message.from_user.id, message.text)
+    await message.answer('Inline версия меню', reply_markup=demo_inline())
+
+
+
+
