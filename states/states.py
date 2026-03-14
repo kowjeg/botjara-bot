@@ -5,3 +5,9 @@ class RegistrationProfile(StatesGroup):
     user_name = State()
     user_age = State()
     user_city = State()
+
+
+class WeatherState(StatesGroup):
+    waiting_location = State()
+
+

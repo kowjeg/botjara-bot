@@ -2,7 +2,7 @@ import logging
 
 from aiogram import Router, html
 from aiogram.filters import Command
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 
 
 
@@ -13,7 +13,7 @@ router = Router()
 async def start_handler(message: Message) -> None:
     logger.info('пришло сообщение от %s %s с текстом %s', message.from_user.id, message.from_user.full_name,
                 message.text)
-    await message.answer(f'Hello, {html.bold(message.from_user.full_name)}!', parse_mode="HTML")
+    await message.answer(f'Hello, {html.bold(message.from_user.full_name)}!')
 
 
 @router.message(Command('help'))
@@ -39,3 +39,4 @@ async def whoami_handler(message: Message) -> None:
         f'Имя: {user.first_name}\n'
         f'Фамилия: {last_name}'
     )
+
